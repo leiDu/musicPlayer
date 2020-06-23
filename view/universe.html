@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>FU-M</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		
+        <script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+        </script>
+       
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }  
+            html,body {
+                width: 100%;
+                height: 100%;
+            }
+            .wrap_panel {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-flow: column;
+                /* background-color:black; */
+            }
+            .music_panel {
+                width:400px;
+                height:600px;
+                /* background-color: blue; */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-flow: column;
+            }
+            .music_panel>div {
+                width: 80%;
+                height: 40px;
+                /* background-color:burlywood; */
+                margin-bottom: 20px;
+            }
+            .music_name {
+                text-align: center;
+                line-height: 40px;
+                font-size: 1.4rem;
+                font-weight: bolder;
+                margin-bottom: 0px !important;
+                text-shadow: 0px 0px 2px rgb(192, 238, 219);
+            }
+            .music_actor {
+                text-align: center;
+                line-height: 40px;
+                font-size: 0.8rem;
+            }
+            .music_song {
+                width: 260px !important;
+                height: 260px !important;
+                border-radius: 50%;
+                /*0px->垂直 0px->水平 8-20->模糊范围 3-5阴影长度*/
+                box-shadow: 0px 0px 8px 0.02rem hsl(26deg 30% 5%);  
+
+            }
+            .music_song>img {
+                height:100%;
+                width: 100%;
+                border-radius: 50%;
+                box-shadow: 0px 0px 8px 0.04rem 090504; 
+
+            }
+            .musicPlayed {
+                animation: panRouted 5s linear 0s infinite;
+            }
+            @keyframes panRouted {
+                from{
+                    transform: rotate(0deg);
+                }
+                to{
+                    transform: rotate(360deg);
+                }
+            }
+            .musicPaused {
+                animation-play-state: paused;
+            }
+            .time_bar {
+                height: 2px !important;
+                width: 60% !important;
+                border-radius: 1px;
+                box-shadow: 0px 0px 5px 0.02rem hsl(26deg 30% 5%);
+            }
+            .play_bar {
+                height: 100px !important;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+            .play_bar>div {
+                height: 80px;
+                width: 80px;
+                background-color: rgb(192, 238, 219);
+                border-radius: 50%;
+                box-shadow: 0px 0px 5px 0.02rem hsl(26deg 30% 5%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .play_bar>div>img {
+                height:60%;
+                width: 60%;
+                border-radius: 50%;
+                /* border: 1px solid red; */
+            }
+            .play_bar>div:nth-of-type(1) {
+                height: 50px !important;
+                width: 50px !important;
+            }
+            .play_bar>div:nth-of-type(2) {
+
+            }
+            .play_bar>div:nth-of-type(3) {
+                height: 50px !important;
+                width: 50px !important;
+            }
+            .music_currentTime {
+                height: 100%;
+                background-color: rgb(7, 6, 6);
+            }
+            .music_pic, .music_pic_center {
+                position: absolute;
+                height: 160px;
+                width: 160px;
+                /* background-color: #000000; */
+                margin-top: -31px;
+                border-radius: 50%;
+                box-shadow: 0px 0px 1px rgb(10 6 5) inset;
+                background-size: cover;
+            }
+            .music_pic_center{
+                /* position: absolute; */
+                height: 40px;
+                width: 40px;
+                background-color: aliceblue;
+            }
+            .music_pic_bg {
+                /*沉浸式背景*/
+                height: 100%;
+                width: 100%;
+                position:absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                background-size: cover;
+                filter: blur(12px);  /*失焦*/
+            }
+        </style>
+        <script src="../vmodel/musicM.js"></script>
+        <script src="../vcontroller/musicAc.js"></script>
+         <script>
+            musicAc.init();
+        </script>
+	</head>
+	<body>
+		<div class="wrap_panel">
+            <div class="music_panel">
+                
+                <div class="music_name">UF-M</div>
+                <div class="music_actor">universe</div>
+                <div class="music_song">
+                    <img id="panel" class="musicPlayed musicPaused" src="../image/cycle.jpg">
+                </div>
+                <div class="time_bar">
+                    <div class="music_currentTime" style="width: 0%;"></div>
+                </div>
+                <div class="play_bar">
+                    <div>
+                        <img onclick="musicAc.playMuted()" src="../image/voice.png">
+                    </div>
+                    <div>
+                        <img onclick="musicAc.playerMusic()" src="../image/play.png" style="margin-left: 10px;">
+                    </div>
+                    <div>
+                        <img onclick="musicAc.runMusic()" src="../image/next.png">
+                    </div>
+                </div>
+            </div>
+
+            <div class="music_pic musicPlayed musicPaused"></div>
+            <div class="music_pic_center"></div>
+            <div class="music_pic_bg"></div>
+        </div>
+
+	</body>
+</html>
